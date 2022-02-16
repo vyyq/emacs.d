@@ -67,5 +67,13 @@
 
 (load-theme 'wombat t)
 
+(setq org-capture-templates
+      '(
+	("j" "Journal Entry"
+	 entry (file+datetree "~/Documents/org/journal.org")
+	 "* %?"
+	 :empty-lines 1)
+	))
+
 (provide 'init-locales)
 ;;; init-locales.el ends here
