@@ -83,7 +83,7 @@
 
 (load-theme 'wombat)
 
-(set-face-background 'default "undefined")
+;; (set-face-background 'default "#000000")
 
 (require 'whitespace)
 (setq whitespace-display-mappings
@@ -98,7 +98,7 @@
                                         ;foreground "#333333"
                     :foreground "#aaaaaa"
                     ;; :background "#242424"
-                    :background "undefined"
+                    :background "#000000"
                     :weight 'bold)
 (set-face-attribute 'whitespace-trailing nil
                     :background "#e4eeff"
@@ -113,12 +113,22 @@
   ;; neither, we use the current indent-tabs-mode
   (let ((space-count (how-many "^  " (point-min) (point-max)))
         (tab-count (how-many "^\t" (point-min) (point-max))))
-    (if (> space-count tab-count) (setq indent-tabs-mode nil))
+    (if (> space-count tab-count)
+        (progn
+          (message "Use space as indentation.")
+          (setq indent-tabs-mode nil)
+          (setq tab-width 2)
+          (setq evil-shift-width 2)
+          (setq c-basic-offset 2)
+          )
+      )
     (if (> tab-count space-count) (setq indent-tabs-mode 'only))))
 (add-hook 'find-file-hook 'infer-indentation-style)
 (setq-default tab-width 8)
 (setq indent-line-function 'insert-tab)
 
+
+(setq-default evil-shift-width tab-width)
 (setq-default c-basic-offset tab-width)
                                         ; (defvaralias 'c-basic-offset 'tab-width)
 
@@ -209,6 +219,49 @@
      (goto-char start)
      ))
 
+(unless (package-installed-p 'clang-format)
+  (package-install 'clang-format))
+
+                                        ; (require 'clang-format)
+(use-package clang-format
+  :defines (clang-format-fallback-style)
+  :after (cc-mode)
+  :config
+  (set-default 'clang-format-fallback-style "Google")
+  (add-hook 'c-mode-common-hook #'(lambda ()
+                                    (add-hook 'before-save-hook
+                                              'clang-format-buffer t t))))
+
+;; (defun clang-format-save-hook-for-this-buffer ()
+;;   "Create a buffer local save hook."
+;;   (add-hook 'before-save-hook
+;;             (lambda ()
+;;               (when (locate-dominating-file "." ".clang-format")
+;;                 (clang-format-buffer))
+;;               ;; Continue to save.
+;;               nil)
+;;             nil
+;;             ;; Buffer local hook.
+;;             t))
+
+;; Run this for each mode you want to use the hook.
+;; (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+;; (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+;; (add-hook 'glsl-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+
+(unless (package-installed-p 'rjsx-mode)
+  (package-install 'rjsx-mode))
+
+(use-package rjsx-mode)
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+
+(unless (package-installed-p 'clang-format)
+  (package-install 'clang-format))
+
+(use-package company-tabnine
+  :ensure t)
+
+(add-to-list 'company-backends #'company-tabnine)
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
