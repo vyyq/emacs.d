@@ -261,7 +261,43 @@
 (use-package company-tabnine
   :ensure t)
 
-(add-to-list 'company-backends #'company-tabnine)
+                                        ; (add-to-list 'company-backends #'company-tabnine)
+
+(unless (package-installed-p 'org-bullets)
+  (package-install 'org-bullets))
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(unless (package-installed-p 'neotree)
+  (package-install 'neotree))
+
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+(unless (package-installed-p 'workgroups)
+  (package-install 'workgroups))
+
+(require 'workgroups)
+(setq wg-prefix-key (kbd "C-c w"))
+(workgroups-mode 1)
+
+(setq evil-insert-state-cursor '((bar . 5) "yellow")
+      evil-normal-state-cursor '(box "purple"))
+
+(unless (package-installed-p 'evil-terminal-cursor-changer)
+  (package-install 'evil-terminal-cursor-changer))
+
+(unless (display-graphic-p)
+  (require 'evil-terminal-cursor-changer)
+  (evil-terminal-cursor-changer-activate) ; or (etcc-on)
+  )
+
+(setq evil-motion-state-cursor 'box)  ; █
+(setq evil-visual-state-cursor 'box)  ; █
+(setq evil-normal-state-cursor 'box)  ; █
+(setq evil-insert-state-cursor 'bar)  ; ⎸
+(setq evil-emacs-state-cursor  'hbar) ; _
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
