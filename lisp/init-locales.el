@@ -299,5 +299,53 @@
 (setq evil-insert-state-cursor 'bar)  ; ⎸
 (setq evil-emacs-state-cursor  'hbar) ; _
 
+(unless (package-installed-p 'nov)
+  (package-install 'nov))
+(require 'nov)
+
+(with-eval-after-load "nov"
+  (when (string-equal system-type "windows-nt")
+    (setq process-coding-system-alist
+          (cons `(,nov-unzip-program . (gbk . gbk))
+                process-coding-system-alist))))
+
+;; FIXME: errors while opening `nov' files with Unicode characters
+(with-no-warnings
+  (defun my-nov-content-unique-identifier (content)
+    "Return the the unique identifier for CONTENT."
+    (when-let* ((name (nov-content-unique-identifier-name content))
+                (selector (format "package>metadata>identifier[id='%s']"
+                                  (regexp-quote name)))
+                (id (car (esxml-node-children (esxml-query selector content)))))
+      (intern id)))
+  (advice-add #'nov-content-unique-identifier :override #'my-nov-content-unique-identifier))
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+(set-face-attribute 'default nil
+                    :family "Noto Sans Mono"
+                    :height 130
+                    :weight 'normal
+                    :width 'normal)
+
+(unless (package-installed-p 'pdf-tools)
+  (package-install 'pdf-tools))
+
+(use-package pdf-tools
+  :pin manual
+  :config
+  (setq pdf-view-display-size 'fit-page
+        pdf-view-midnight-colors '("#f8f8f2" . "#282a36"))
+  :bind
+  (:map pdf-view-mode-map ("M" . pdf-view-midnight-minor-mode)))
+(pdf-tools-install)
+
+(unless (package-installed-p 'helm)
+  (package-install 'helm))
+
+(require 'helm)
+(helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
 (provide 'init-locales)
 ;;; init-locales.el ends here
