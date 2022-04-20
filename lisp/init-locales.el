@@ -347,5 +347,13 @@
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)))
+
+(setq org-ditaa-jar-path "~/.emacs.d/elpa/contrib/scripts/ditaa0_9.jar")
+(setq org-confirm-babel-evaluate nil)
+
+
 (provide 'init-locales)
 ;;; init-locales.el ends here
