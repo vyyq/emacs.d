@@ -73,9 +73,11 @@
 
 (setq org-capture-templates
       '(
+        ("t" "Todo" entry (file+headline "~/Documents/org/gtd.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
         ("j" "Journal Entry"
          entry (file+datetree "~/Documents/org/journal.org")
-         "* %?"
+         "* %?\nEntered on %U\n  %i\n  %a"
          :empty-lines 1)
         ))
 
@@ -266,8 +268,8 @@
 (unless (package-installed-p 'org-bullets)
   (package-install 'org-bullets))
 
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; (require 'org-bullets)
+;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (unless (package-installed-p 'neotree)
   (package-install 'neotree))
@@ -323,8 +325,8 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (set-face-attribute 'default nil
-                    :family "Noto Sans Mono"
-                    :height 100
+                    :family "Comic Mono"
+                    :height 140
                     :weight 'normal
                     :width 'normal)
 
