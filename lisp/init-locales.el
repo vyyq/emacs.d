@@ -418,6 +418,9 @@
 
 (setq org-export-with-smart-quotes t)
 
+(setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
+(setq org-agenda-files '("~/Documents/org"))
+
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
