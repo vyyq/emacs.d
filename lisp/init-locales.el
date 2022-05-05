@@ -325,7 +325,7 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (set-face-attribute 'default nil
-                    :family "Comic Mono"
+                    :family "Consolas for Powerline"
                     :height 140
                     :weight 'normal
                     :width 'normal)
@@ -420,7 +420,13 @@
 
 (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
 (setq org-agenda-files '("~/Documents/org"))
+;; (setq-default display-fill-column-indicator-character U+2502)
+(setq-default display-fill-column-indicator-column -1)
 
+(unless (package-installed-p 'unicode-fonts)
+  (package-install 'unicode-fonts))
+(require 'unicode-fonts)
+(unicode-fonts-setup)
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
