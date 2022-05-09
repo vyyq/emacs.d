@@ -330,18 +330,6 @@
                     :weight 'normal
                     :width 'normal)
 
-(unless (package-installed-p 'pdf-tools)
-  (package-install 'pdf-tools))
-
-(use-package pdf-tools
-  :pin manual
-  :config
-  (setq pdf-view-display-size 'fit-page
-        pdf-view-midnight-colors '("#f8f8f2" . "#282a36"))
-  :bind
-  (:map pdf-view-mode-map ("M" . pdf-view-midnight-minor-mode)))
-(pdf-tools-install)
-
 (unless (package-installed-p 'helm)
   (package-install 'helm))
 
