@@ -73,7 +73,7 @@
 
 (setq org-capture-templates
       '(
-        ("t" "Todo" entry (file+headline "~/Documents/org/gtd.org" "Tasks")
+        ("t" "Todo" entry (file+headline "~/Documents/org/agenda/gtd.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
         ("j" "Journal Entry"
          entry (file+datetree "~/Documents/org/journal.org")
@@ -325,7 +325,7 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 (set-face-attribute 'default nil
-                    :family "Consolas for Powerline"
+                    :family "MesloLGS Nerd Font Mono"
                     :height 140
                     :weight 'normal
                     :width 'normal)
@@ -341,7 +341,7 @@
  'org-babel-load-languages
  '((ditaa . t)))
 
-(setq org-ditaa-jar-path "~/.emacs.d/elpa/contrib/scripts/ditaa0_9.jar")
+(setq org-ditaa-jar-path "/usr/bin/ditaa")
 (setq org-confirm-babel-evaluate nil)
 
 (unless (package-installed-p 'org-ref)
@@ -407,14 +407,9 @@
 (setq org-export-with-smart-quotes t)
 
 (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
-(setq org-agenda-files '("~/Documents/org"))
+(setq org-agenda-files '("~/Documents/org/agenda/"))
 ;; (setq-default display-fill-column-indicator-character U+2502)
 (setq-default display-fill-column-indicator-column -1)
-
-(unless (package-installed-p 'unicode-fonts)
-  (package-install 'unicode-fonts))
-(require 'unicode-fonts)
-(unicode-fonts-setup)
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
