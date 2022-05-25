@@ -409,7 +409,7 @@
 (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
 (setq org-agenda-files '("~/Documents/org/agenda/"))
 ;; (setq-default display-fill-column-indicator-character U+2502)
-(setq-default display-fill-column-indicator-column -1)
+;; (setq-default display-fill-column-indicator-column -1)
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
