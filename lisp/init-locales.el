@@ -230,9 +230,10 @@
   :after (cc-mode)
   :config
   (set-default 'clang-format-fallback-style "Google")
-  (add-hook 'c-mode-common-hook #'(lambda ()
-                                    (add-hook 'before-save-hook
-                                              'clang-format-buffer t t))))
+  ;; (add-hook 'c-mode-common-hook #'(lambda ()
+  ;;                                   (add-hook 'before-save-hook
+  ;;                                             'clang-format-buffer t t)))
+  )
 
 ;; (defun clang-format-save-hook-for-this-buffer ()
 ;;   "Create a buffer local save hook."
@@ -326,7 +327,7 @@
 
 (set-face-attribute 'default nil
                     :family "MesloLGS Nerd Font Mono"
-                    :height 140
+                    :height 100
                     :weight 'normal
                     :width 'normal)
 

@@ -151,7 +151,7 @@
 
 (require 'init-direnv)
 
-
+
 
 ;; Allow access from emacsclient
 (add-hook 'after-init-hook
