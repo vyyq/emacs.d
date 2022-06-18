@@ -440,5 +440,7 @@
 
 (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
 
+(setq lsp-enable-file-watchers nil)
+
 (provide 'init-locales)
 ;;; init-locales.el ends here
