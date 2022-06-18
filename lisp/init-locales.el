@@ -434,7 +434,7 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
-(setq ccls-executable "/usr/local/bin/ccls")
+(setq ccls-executable "/usr/bin/ccls")
 (setq lsp-prefer-flymake nil)
 (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
 
