@@ -416,9 +416,6 @@
 (unless (package-installed-p 'lsp-ui)
   (package-install 'lsp-ui))
 
-(unless (package-installed-p 'ccls)
-  (package-install 'ccls))
-
 (unless (package-installed-p 'yasnippet)
   (package-install 'yasnippet))
 
@@ -429,18 +426,6 @@
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
-
-(use-package ccls
-  :hook ((c-mode c++-mode objc-mode cuda-mode) .
-         (lambda () (require 'ccls) (lsp))))
-
-(setq ccls-executable "/usr/bin/ccls")
-(setq lsp-prefer-flymake nil)
-(setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-
-(setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
-
-(setq lsp-enable-file-watchers nil)
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
