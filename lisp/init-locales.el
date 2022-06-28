@@ -384,13 +384,6 @@
 
 (define-key bibtex-mode-map (kbd "H-b") 'org-ref-bibtex-hydra/body)
 
-;;(require 'org-ref-helm)
-;; (setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
-;;       org-ref-insert-cite-function 'org-ref-cite-insert-helm
-;;       org-ref-insert-label-function 'org-ref-insert-label-link
-;;       org-ref-insert-ref-function 'org-ref-insert-ref-link
-;;       org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body)))
-
 (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
 
 ;; (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
