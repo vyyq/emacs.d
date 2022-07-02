@@ -80,25 +80,6 @@
 
 (set-background-color "black")
 
-(require 'whitespace)
-(setq whitespace-display-mappings
-      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-      '(
-        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-        (newline-mark 10 [182 10]) ; 10 LINE FEED
-        (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-        ))
-
-(setq whitespace-style '(face tabs trailing tab-mark))
-(set-face-attribute 'whitespace-tab nil
-                    :foreground "#aaaaaa"
-                    :weight 'normal)
-(set-face-attribute 'whitespace-trailing nil
-                    :background "#000000"
-                    :foreground "#aaaaaa"
-                    :weight 'normal)
-(add-hook 'prog-mode-hook 'whitespace-mode)
-
 (defun infer-indentation-style ()
   ;; if our source file uses tabs, we use tabs, if spaces spaces, and if
   ;; neither, we use the current indent-tabs-mode
@@ -379,6 +360,23 @@
 
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
+
+(require 'whitespace)
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(setq whitespace-display-mappings
+      ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+      '(
+        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+        (newline-mark 10 [182 10]) ; 10 LINE FEED
+        (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+        ))
+
+(setq whitespace-style '(face tabs spaces trailing tab-mark newline))
+(set-face-attribute 'whitespace-tab nil :background "black" :foreground "gray" :weight 'normal)
+(set-face-attribute 'whitespace-space nil :background "black" :foreground "gray" :weight 'normal)
+(set-face-attribute 'whitespace-trailing nil :background "red" :foreground "green" :weight 'normal)
+
+
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
