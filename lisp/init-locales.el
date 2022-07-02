@@ -22,8 +22,6 @@
 (unless (eq system-type 'windows-nt)
   (set-selection-coding-system 'utf-8))
 
-
-
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives
@@ -61,15 +59,12 @@
 ;; #+LATEX_HEADER: \usepackage{ctex}
 
 (require 'org)
-;;  org-mode 8.0
 (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
                               "xelatex -interaction nonstopmode %f"))
 
 ;; export cn character
 (setf org-latex-default-packages-alist
       (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
-
-;; (require 'color-theme-sanityinc-tomorrow)
 
 (setq org-capture-templates
       '(
@@ -81,11 +76,9 @@
          :empty-lines 1)
         ))
 
-;; (setq org-export-latex-listings t)
+;; (load-theme 'wombat)
 
-(load-theme 'wombat)
-
-;; (set-face-background 'default "#000000")
+(set-background-color "black")
 
 (require 'whitespace)
 (setq whitespace-display-mappings
@@ -95,20 +88,16 @@
         (newline-mark 10 [182 10]) ; 10 LINE FEED
         (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
+
 (setq whitespace-style '(face tabs trailing tab-mark))
 (set-face-attribute 'whitespace-tab nil
-                                        ;foreground "#333333"
                     :foreground "#aaaaaa"
-                    ;; :background "#242424"
-                    :background "#000000"
-                    :weight 'bold)
+                    :weight 'normal)
 (set-face-attribute 'whitespace-trailing nil
-                    :background "#e4eeff"
-                    :foreground "#183bc8"
+                    :background "#000000"
+                    :foreground "#aaaaaa"
                     :weight 'normal)
 (add-hook 'prog-mode-hook 'whitespace-mode)
-
-                                        ;(setq-default indent-tabs-mode 'only)
 
 (defun infer-indentation-style ()
   ;; if our source file uses tabs, we use tabs, if spaces spaces, and if
@@ -224,33 +213,12 @@
 (unless (package-installed-p 'clang-format)
   (package-install 'clang-format))
 
-                                        ; (require 'clang-format)
 (use-package clang-format
   :defines (clang-format-fallback-style)
   :after (cc-mode)
   :config
   (set-default 'clang-format-fallback-style "Google")
-  ;; (add-hook 'c-mode-common-hook #'(lambda ()
-  ;;                                   (add-hook 'before-save-hook
-  ;;                                             'clang-format-buffer t t)))
-  )
-
-;; (defun clang-format-save-hook-for-this-buffer ()
-;;   "Create a buffer local save hook."
-;;   (add-hook 'before-save-hook
-;;             (lambda ()
-;;               (when (locate-dominating-file "." ".clang-format")
-;;                 (clang-format-buffer))
-;;               ;; Continue to save.
-;;               nil)
-;;             nil
-;;             ;; Buffer local hook.
-;;             t))
-
-;; Run this for each mode you want to use the hook.
-;; (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
-;; (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
-;; (add-hook 'glsl-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+)
 
 (unless (package-installed-p 'rjsx-mode)
   (package-install 'rjsx-mode))
@@ -261,16 +229,8 @@
 (unless (package-installed-p 'clang-format)
   (package-install 'clang-format))
 
-(use-package company-tabnine
-  :ensure t)
-
-                                        ; (add-to-list 'company-backends #'company-tabnine)
-
 (unless (package-installed-p 'org-bullets)
   (package-install 'org-bullets))
-
-;; (require 'org-bullets)
-;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (unless (package-installed-p 'neotree)
   (package-install 'neotree))
@@ -327,7 +287,7 @@
 
 (set-face-attribute 'default nil
                     :family "MesloLGS Nerd Font Mono"
-                    :height 100
+                    :height 90
                     :weight 'normal
                     :width 'normal)
 
