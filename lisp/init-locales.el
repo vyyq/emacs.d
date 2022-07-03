@@ -76,7 +76,7 @@
          :empty-lines 1)
         ))
 
-;; (load-theme 'wombat)
+(load-theme 'zeno)
 
 (set-background-color "black")
 
@@ -362,7 +362,7 @@
 (add-hook 'c++-mode-hook 'lsp)
 
 (require 'whitespace)
-(add-hook 'prog-mode-hook 'whitespace-mode)
+(setq whitespace-style '(face tabs trailing tab-mark newline))
 (setq whitespace-display-mappings
       ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
       '(
@@ -371,12 +371,17 @@
         (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
 
-(setq whitespace-style '(face tabs spaces trailing tab-mark newline))
 (set-face-attribute 'whitespace-tab nil :background "black" :foreground "gray" :weight 'normal)
 (set-face-attribute 'whitespace-space nil :background "black" :foreground "gray" :weight 'normal)
 (set-face-attribute 'whitespace-trailing nil :background "red" :foreground "green" :weight 'normal)
 
+(add-hook 'prog-mode-hook 'whitespace-mode)
 
+;; (unless (package-installed-p 'emojify)
+  ;; (package-install 'emojify'))
+
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
 
 (provide 'init-locales)
 ;;; init-locales.el ends here
