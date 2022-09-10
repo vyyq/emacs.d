@@ -371,9 +371,19 @@
         (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
 
-(set-face-attribute 'whitespace-tab nil :background "black" :foreground "gray" :weight 'normal)
-(set-face-attribute 'whitespace-space nil :background "black" :foreground "gray" :weight 'normal)
-(set-face-attribute 'whitespace-trailing nil :background "red" :foreground "green" :weight 'normal)
+(set-face-attribute 'whitespace-tab nil
+                    ;; :background (face-attribute 'default :background)
+                    :background "#282a36"
+                    :foreground "dimgray"
+                    :weight 'normal)
+(set-face-attribute 'whitespace-space nil
+                    :background "#282a36"
+                    :foreground "dimgray"
+                    :weight 'normal)
+(set-face-attribute 'whitespace-trailing nil
+                    :background "red"
+                    :foreground "green"
+                    :weight 'normal)
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
