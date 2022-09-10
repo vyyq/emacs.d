@@ -266,12 +266,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
-(set-face-attribute 'default nil
-                    :family "MesloLGS Nerd Font Mono"
-                    :height 90
-                    :weight 'normal
-                    :width 'normal)
-
 (unless (package-installed-p 'helm)
   (package-install 'helm))
 
@@ -371,8 +365,15 @@
         (tab-mark 9 [187 9] [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
 
+(set-face-attribute 'default nil
+                    :family "MesloLGS Nerd Font Mono"
+                    :height 100
+                    :background "#282a36"
+                    ;; :foreground "#d19c9c"
+                    :foreground "white"
+                    :weight 'normal)
+
 (set-face-attribute 'whitespace-tab nil
-                    ;; :background (face-attribute 'default :background)
                     :background "#282a36"
                     :foreground "dimgray"
                     :weight 'normal)
