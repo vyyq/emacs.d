@@ -76,8 +76,6 @@
          :empty-lines 1)
         ))
 
-(load-theme 'zeno)
-
 (set-background-color "black")
 
 (defun infer-indentation-style ()
