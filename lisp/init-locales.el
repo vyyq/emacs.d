@@ -366,22 +366,22 @@
 (set-face-attribute 'default nil
                     :family "MesloLGS Nerd Font Mono"
                     :height 100
-                    :background "#282a36"
+                    ;; :background "#282a36"
                     ;; :foreground "#d19c9c"
                     :foreground "white"
                     :weight 'normal)
 
 (set-face-attribute 'whitespace-tab nil
-                    :background "#282a36"
-                    :foreground "dimgray"
+                    ;; :background "#282a36"
+                    ;; :foreground "dimgray"
                     :weight 'normal)
 (set-face-attribute 'whitespace-space nil
-                    :background "#282a36"
-                    :foreground "dimgray"
+                    ;; :background "#282a36"
+                    ;; :foreground "dimgray"
                     :weight 'normal)
 (set-face-attribute 'whitespace-trailing nil
-                    :background "red"
-                    :foreground "green"
+                    ;; :background "red"
+                    ;; :foreground "green"
                     :weight 'normal)
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
