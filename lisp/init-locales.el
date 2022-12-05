@@ -364,7 +364,7 @@
         ))
 
 (set-face-attribute 'default nil
-                    :family "MesloLGS Nerd Font Mono"
+                    :family "mononoki Nerd Font Mono"
                     :height 100
                     ;; :background "#282a36"
                     ;; :foreground "#d19c9c"
