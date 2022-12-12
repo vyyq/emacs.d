@@ -42,7 +42,7 @@
 ;; Enable Evil
 (require 'evil)
 (evil-mode 1)
-(setq key-chord-two-keys-delay 0.5)
+(setq key-chord-two-keys-delay 0.1)
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
 
 ;; (add-hook 'evil-local-mode-hook 'turn-on-undo-tree-mode)
@@ -365,7 +365,7 @@
 
 (set-face-attribute 'default nil
                     :family "mononoki Nerd Font Mono"
-                    :height 100
+                    :height 120
                     ;; :background "#282a36"
                     ;; :foreground "#d19c9c"
                     :foreground "white"
